@@ -1,0 +1,26 @@
+# Python virtual environments
+.venv/
+
+# Python cache and compiled files
+__pycache__/
+*.py[cod]
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Real Kubernetes secrets
+*-secret.yaml
+!*-secret.example.yaml
+*.local.yaml
+secrets/
+
+# Temporary Microsoft Office files
+.~lock.*#
+
+# Editors and operating systems
+.idea/
+.vscode/
+.DS_Store
+Thumbs.db
