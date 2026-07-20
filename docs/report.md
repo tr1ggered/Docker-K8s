@@ -109,3 +109,37 @@ SystemdCgroup = true
 статус `ok`.
 
 <!-- Здесь будет скриншот проверки containerd и CRI. -->
+
+## 4. Запуск Kubernetes
+
+На всех трёх узлах установил:
+
+```text
+kubeadm 1.33.13
+kubelet 1.33.13
+kubectl 1.33.13
+containerd 2.2.1
+Calico 3.31.6
+```
+
+Control plane запустил на `kube1` с помощью kubeadm. Для Pod использовал
+сеть `10.244.0.0/16`, для Service — `10.96.0.0/12`.
+
+После установки Calico подключил к кластеру `kube2` и `kube3`. Все три
+узла перешли в состояние `Ready`.
+
+<!-- Здесь будет скриншот kubectl get nodes -o wide. -->
+
+### Проверка сети
+
+Для проверки создал два временных Pod:
+
+- `test-kube2` на узле `kube2`;
+- `test-kube3` на узле `kube3`.
+
+Ping между Pod прошёл в обе стороны без потерь. Через CoreDNS имя
+`kubernetes.default.svc.cluster.local` разрешилось в адрес `10.96.0.1`.
+
+После проверки временный namespace удалил.
+
+<!-- Здесь будет скриншот Pod, ping и nslookup. -->
