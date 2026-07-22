@@ -169,3 +169,20 @@ NFS CSI Driver 4.13.4
 `Retain`. После проверки тестовый PV и его каталог удалил.
 
 ![Проверка сохранности данных на NFS](screenshots/image.png)
+
+## 6. PostgreSQL
+
+PostgreSQL 15.18 запустил через StatefulSet. Настройки базы вынес в
+ConfigMap, а пароль создал как Secret прямо в кластере и не добавлял в
+Git. Для базы создал Service `postgres` и PVC размером `2Gi`.
+
+StatefulSet, Pod и PVC запустились нормально: Pod имеет статус
+`Running`, а PVC — `Bound`.
+
+![Запущенный PostgreSQL и подключённый PVC](<screenshots/image copy.png>)
+
+Для проверки записал строку в базу и удалил Pod. StatefulSet создал Pod
+заново с другим UID, а строка осталась в базе. Значит PostgreSQL хранит
+данные на постоянном томе, а не внутри Pod.
+
+![Проверка данных после пересоздания PostgreSQL Pod](<screenshots/image copy 2.png>)
