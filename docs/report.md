@@ -202,3 +202,10 @@ Pod. Также настроил probes, ограничения ресурсов
 PostgreSQL увеличился с 1 до 6.
 
 ![Запросы к backend через Service](<screenshots/image copy 4.png>)
+
+### Самовосстановление
+
+Удалил один backend Pod вручную. Deployment автоматически создал новый
+Pod и восстановил количество готовых реплик до `3/3`.
+
+![Восстановление backend Pod](<screenshots/image copy 5.png>)
