@@ -209,3 +209,17 @@ PostgreSQL увеличился с 1 до 6.
 Pod и восстановил количество готовых реплик до `3/3`.
 
 ![Восстановление backend Pod](<screenshots/image copy 5.png>)
+
+### Rolling Update и rollback
+
+После обновления backend с `v1` на `v2` выполнил rollback. Deployment
+вернулся на образ `v1`, что подтвердили ответ приложения и история
+ревизий.
+
+![Проверка rollback до backend v1](<screenshots/image copy 6.png>)
+
+Затем повторил Rolling Update под непрерывной нагрузкой. Из 600
+запросов 202 обработала версия `v1`, 398 — версия `v2`. HTTP-ошибок не
+было. Для обновления использовал `maxUnavailable: 0` и `maxSurge: 1`.
+
+![Rolling Update backend без ошибок](<screenshots/image copy 7.png>)

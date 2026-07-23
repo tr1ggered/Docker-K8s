@@ -30,7 +30,7 @@ spec:
 
       containers:
         - name: backend
-          image: docker.io/tr16an/k8s-homework-backend:v1
+          image: docker.io/tr16an/k8s-homework-backend:v2
           imagePullPolicy: IfNotPresent
 
           ports:
